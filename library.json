@@ -1,0 +1,27 @@
+{
+  "name": "DJWInternetTime",
+  "version": "1.0.0",
+  "description": "DJWInternetTime is a very light wight library for getting internet time.",
+  "keywords": "internet, time, clock, date, watch",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/trevor-sonic/DJWInternetTime.git"
+  },
+  "authors":
+  [
+    {
+      "name": "DejaWorks",
+      "email": "trevor@dejaworks.com",
+      "url": "http://lab.dejaworks.com",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "http://lab.dejaworks.com",
+  "dependencies": {
+    "ownername/print": "~1.3.0"
+  },
+  "frameworks": "arduino",
+  "platforms": "*"
+}
