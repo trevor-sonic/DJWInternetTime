@@ -1,3 +1,9 @@
+//
+//  DJWInternetTime
+//  Created by DejaWorks on 22/07/2020.
+//  Copyright © 2020 dejaWorks. All rights reserved.
+//
+
 #include <Arduino.h>
 #include <InternetTime.h>
 
