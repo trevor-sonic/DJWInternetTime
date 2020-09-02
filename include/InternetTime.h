@@ -28,9 +28,14 @@ public:
     virtual ~InternetTime();
 
     void setup(callbackFunction completionFunc);
+		String now();
     String currentTime();
     InternetTime &timeZone(int zone);
     InternetTime &dst(int dst);
+		boolean isBefore(String timeStr);
+		boolean isAfter(String timeStr);
+		boolean isBefore(String yearStr, String monthStr, String dayStr, String hourStr, String minuteStr);
+		boolean isAfter (String yearStr, String monthStr, String dayStr, String hourStr, String minuteStr);
 
 };
 
