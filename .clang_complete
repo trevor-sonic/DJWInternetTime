@@ -10,6 +10,7 @@
 -I/Users/dejaworks/.platformio/lib/Bounce2_ID1106/src
 -I/Users/dejaworks/.platformio/lib/CircularBuffer
 -I/Users/dejaworks/.platformio/lib/DFPlayer Mini Mp3 by Makuna/src
+-I/Users/dejaworks/.platformio/lib/DFPlayerMini_Fast/src
 -I/Users/dejaworks/.platformio/lib/DFRobotDFPlayerMini
 -I/Users/dejaworks/.platformio/lib/DJWInterval/include
 -I/Users/dejaworks/.platformio/lib/DJWInterval/src
@@ -24,6 +25,7 @@
 -I/Users/dejaworks/.platformio/lib/ESPAsyncTCP-esphome/src
 -I/Users/dejaworks/.platformio/lib/EncoderOne
 -I/Users/dejaworks/.platformio/lib/EspHtmlTemplateProcessor/src
+-I/Users/dejaworks/.platformio/lib/FireTimer/src
 -I/Users/dejaworks/.platformio/lib/Keypad/src
 -I/Users/dejaworks/.platformio/lib/LedControl/src
 -I/Users/dejaworks/.platformio/lib/LiquidCrystal_ID136
@@ -31,6 +33,7 @@
 -I/Users/dejaworks/.platformio/lib/MD_Parola/src
 -I/Users/dejaworks/.platformio/lib/MIDIFile
 -I/Users/dejaworks/.platformio/lib/MaxMatrix
+-I/Users/dejaworks/.platformio/lib/OneButton/src
 -I/Users/dejaworks/.platformio/lib/OneWire_ID1
 -I/Users/dejaworks/.platformio/lib/PetitFS/src
 -I/Users/dejaworks/.platformio/lib/RF24_ID433
@@ -76,7 +79,7 @@
 -I/Users/dejaworks/.platformio/packages/toolchain-xtensa/lib/gcc/xtensa-lx106-elf/4.8.2/include-fixed
 -I/Users/dejaworks/.platformio/packages/toolchain-xtensa/xtensa-lx106-elf/include
 -I/Users/dejaworks/.platformio/packages/tool-unity
--DPLATFORMIO=40304
+-DPLATFORMIO=50000
 -DESP8266
 -DARDUINO_ARCH_ESP8266
 -DARDUINO_ESP8266_NODEMCU

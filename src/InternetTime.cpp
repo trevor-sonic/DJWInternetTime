@@ -14,13 +14,14 @@ InternetTime::~InternetTime() {}
 void InternetTime::setup(callbackFunction completionFunc)
 {
     _completionFunc = completionFunc;
+    configTime(_timezone, _dst, "pool.ntp.org", "time.nist.gov", "0.uk.pool.ntp.org");
+    Serial.println("Setup InternetTime _");
 
-    configTime(_timezone, _dst, "pool.ntp.org", "time.nist.gov");
-    Serial.println("Setup InternetTime ...");
-
-    while (!time(nullptr))
+    int count = 0;
+    while (time(nullptr) <= 100000  && count < 60)
     {
-        Serial.print("*");
+        Serial.print(".");
+        count += 1;
         delay(1000);
     }
 
@@ -90,8 +91,8 @@ String InternetTime::now() {
 
     return formattedTime;
 }
-// timeStr format like 2012251830 (6:30pm)
-boolean InternetTime::isBefore(String timeStr){
+// format the time (now) comparable
+String InternetTime::comparableNow(String timeStr){
   String nowOrg = now();
   String nowStr = "";
 
@@ -126,6 +127,13 @@ boolean InternetTime::isBefore(String timeStr){
   String minute;
   minute = timeStr.substring(8,10);
   nowStr += nowOrg.substring(8,10);
+
+  return nowStr;
+}
+
+// timeStr format like 2012251830 (6:30pm)
+boolean InternetTime::isBefore(String timeStr){
+  String nowStr = comparableNow(timeStr);
 
   if(timeStr <= nowStr){
     return true;
@@ -175,154 +183,4 @@ boolean InternetTime::isAfter(String timeStr){
   }
   return false;
 
-
-
-
-  return isAfter(year, month, day, hour, minute);
-}
-
-boolean InternetTime::isBefore(String yearStr, String monthStr, String dayStr, String hourStr, String minuteStr){
-
-  int year = 2000 + yearStr.toInt();
-  int month = monthStr.toInt();
-  int day = dayStr.toInt();
-  int hour = hourStr.toInt();
-  int minute = minuteStr.toInt();
-
-  // Serial.println(year);
-  // Serial.println(month);
-  // Serial.println(day);
-  // Serial.println(hour);
-  // Serial.println(minute);
-
-  time_t now = time(nullptr);
-  struct tm *p_tm = localtime(&now);
-
-  int thisYear = p_tm->tm_year + 1900;
-  // Serial.println(thisYear);
-
-  int thisMonth = p_tm->tm_mon + 1;
-  // Serial.println(thisMonth);
-
-  int thisDay = p_tm->tm_mday;
-  // Serial.println(thisDay);
-
-  // Serial.println(p_tm->tm_hour);
-  // Serial.println(p_tm->tm_min);
-
-
-
-  if (year>2000 && year < thisYear){
-    return true;
-
-  }else if ((year>2000 && year == thisYear)
-        && (month>0 && month < thisMonth)){
-    return true;
-
-  }else if ((year>2000 && year == thisYear)
-        && (month>0 && month == thisMonth)
-        && (day>0 && day < thisDay)){
-    return true;
-
-  }else if ((year>2000 && year == thisYear)
-        && (month>0 && month == thisMonth)
-        && (day>0 && day == thisDay)
-        && (hour < p_tm->tm_hour)){
-    return true;
-
-  }else if ((year>2000 && year == thisYear)
-        && (month>0 && month == thisMonth)
-        && (day>0 && day == thisDay)
-        && (hour == p_tm->tm_hour)
-        && (minute <= p_tm->tm_min)){
-    return true;
-
-  }else if ((year==2000)
-        && (month==0)
-        && (day==0)
-        && (hour < p_tm->tm_hour)){
-    return true;
-
-  }else if ((year==2000)
-        && (month==0)
-        && (day==0)
-        && (hour == p_tm->tm_hour)
-        && (minute <= p_tm->tm_min)){
-    return true;
-  }
-
-  return false;
-}
-
-boolean InternetTime::isAfter(String yearStr, String monthStr, String dayStr, String hourStr, String minuteStr){
-
-  int year = 2000 + yearStr.toInt();
-  int month = monthStr.toInt();
-  int day = dayStr.toInt();
-  int hour = hourStr.toInt();
-  int minute = minuteStr.toInt();
-
-  // Serial.println(year);
-  // Serial.println(month);
-  // Serial.println(day);
-  // Serial.println(hour);
-  // Serial.println(minute);
-
-  time_t now = time(nullptr);
-  struct tm *p_tm = localtime(&now);
-
-  int thisYear = p_tm->tm_year + 1900;
-  // Serial.println(thisYear);
-
-  int thisMonth = p_tm->tm_mon + 1;
-  // Serial.println(thisMonth);
-
-  int thisDay = p_tm->tm_mday;
-  // Serial.println(thisDay);
-
-  // Serial.println(p_tm->tm_hour);
-  // Serial.println(p_tm->tm_min);
-
-
-
-  if (year>2000 && year > thisYear){
-    return true;
-
-  }else if ((year>0 && year == thisYear)
-        && (month>0 && month > thisMonth)){
-    return true;
-
-  }else if ((year>0 && year == thisYear)
-        && (month>0 && month == thisMonth)
-        && (day>0 && day > thisDay)){
-    return true;
-
-  }else if ((year>0 && year == thisYear)
-        && (month>0 && month == thisMonth)
-        && (day>0 && day == thisDay)
-        && (hour > p_tm->tm_hour)){
-    return true;
-
-  }else if ((year>0 && year == thisYear)
-        && (month>0 && month == thisMonth)
-        && (day>0 && day == thisDay)
-        && (hour == p_tm->tm_hour)
-        && (minute > p_tm->tm_min)){
-    return true;
-
-  }else if ((year==2000)
-        && (month==0)
-        && (day==0)
-        && (hour > p_tm->tm_hour)){
-    return true;
-
-  }else if ((year==2000)
-        && (month==0)
-        && (day==0)
-        && (hour == p_tm->tm_hour)
-        && (minute > p_tm->tm_min)){
-    return true;
-  }
-
-  return false;
 }

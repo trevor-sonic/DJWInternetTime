@@ -22,20 +22,29 @@ private:
     int _timezone = 0 * 3600; // 0 is London
     int _dst = 0;
     callbackFunction _completionFunc = NULL;
-
+		String comparableNow(String timeStr);
+		
 public:
     InternetTime(/* args */);
     virtual ~InternetTime();
 
     void setup(callbackFunction completionFunc);
+
+		// returns the currentTime in 2012312345 format
 		String now();
+
+
+		// returns the currentTime in 2020/12/31 23:45 format
     String currentTime();
+
     InternetTime &timeZone(int zone);
     InternetTime &dst(int dst);
+
+		// is given time before or equal
 		boolean isBefore(String timeStr);
+
+		// is given time agter or equal
 		boolean isAfter(String timeStr);
-		boolean isBefore(String yearStr, String monthStr, String dayStr, String hourStr, String minuteStr);
-		boolean isAfter (String yearStr, String monthStr, String dayStr, String hourStr, String minuteStr);
 
 };
 
